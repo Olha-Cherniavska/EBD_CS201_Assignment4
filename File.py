@@ -63,3 +63,7 @@ for key, value in category_net_profit.items():
 average_net_profit = all_net_profit / len(category_net_profit)
 category_net_profit_more_than_average = dict(filter(lambda row: row[1]>=average_net_profit, category_net_profit.items()))
 print(category_net_profit_more_than_average)
+
+#Відсортування категорій
+new_category_list = dict(sorted(category_net_profit_more_than_average.items(), key=lambda x: x[1], reverse=True))
+print(new_category_list)
