@@ -36,3 +36,9 @@ for row in list_of_dictionaries:
             row["net_profit"] = row["revenue"] - (row["revenue"] * (dictionary[a]/100))
 print(list_of_dictionaries)
 
+#Збереження оновленого масиву
+columns = ["transaction_id", "date", "region", "product_category", "quantity", "revenue", "net_profit"]
+with open("cleaned_sales_updated.csv", "w", encoding="utf-8", newline="") as file:
+    writer = csv.DictWriter(file, fieldnames=columns)
+    writer.writeheader()
+    writer.writerows(list_of_dictionaries)
