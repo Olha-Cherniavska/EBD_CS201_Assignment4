@@ -28,3 +28,11 @@ for key, val in dictionary.items():
         dictionary[key] = 0
     else:
         dictionary[key] = float(val)
+
+#Оновлення даних
+for row in list_of_dictionaries:
+    for a in dictionary:
+        if a == row["region"]:
+            row["net_profit"] = row["revenue"] - (row["revenue"] * (dictionary[a]/100))
+print(list_of_dictionaries)
+
