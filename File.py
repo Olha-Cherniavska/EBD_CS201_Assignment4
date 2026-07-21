@@ -34,7 +34,7 @@ for row in list_of_dictionaries:
     for a in dictionary:
         if a == row["region"]:
             row["net_profit"] = row["revenue"] - (row["revenue"] * (dictionary[a]/100))
-print(list_of_dictionaries)
+
 
 #Збереження оновленого масиву
 columns = ["transaction_id", "date", "region", "product_category", "quantity", "revenue", "net_profit"]
@@ -42,3 +42,16 @@ with open("cleaned_sales_updated.csv", "w", encoding="utf-8", newline="") as fil
     writer = csv.DictWriter(file, fieldnames=columns)
     writer.writeheader()
     writer.writerows(list_of_dictionaries)
+
+# Аналітика (Новий масив даних)
+category_net_profit = {}
+for a in list_of_dictionaries:
+    category_net_profit[a["product_category"]] = 0
+
+with open("cleaned_sales_updated.csv", "r", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        for key, value in category_net_profit.items():
+            if key == row["product_category"]:
+                category_net_profit[key] += float(row["net_profit"])
+print(category_net_profit)
