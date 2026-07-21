@@ -55,3 +55,11 @@ with open("cleaned_sales_updated.csv", "r", encoding="utf-8") as file:
             if key == row["product_category"]:
                 category_net_profit[key] += float(row["net_profit"])
 print(category_net_profit)
+
+#Cередній прибуток
+all_net_profit = 0
+for key, value in category_net_profit.items():
+    all_net_profit += value
+average_net_profit = all_net_profit / len(category_net_profit)
+category_net_profit_more_than_average = dict(filter(lambda row: row[1]>=average_net_profit, category_net_profit.items()))
+print(category_net_profit_more_than_average)
