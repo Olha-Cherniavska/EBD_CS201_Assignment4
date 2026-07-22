@@ -67,3 +67,7 @@ print(category_net_profit_more_than_average)
 #Відсортування категорій
 new_category_list = dict(sorted(category_net_profit_more_than_average.items(), key=lambda x: x[1], reverse=True))
 print(new_category_list)
+
+#Збереження нового набору
+with open("top_categories.json", "w", encoding="utf-8") as file:
+    json.dump(new_category_list, file, indent=4)
