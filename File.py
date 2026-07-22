@@ -1,5 +1,6 @@
 import csv
 import json
+import pandas as pd
 
 list_of_dictionaries = []
 with open("global_sales.csv", "r", encoding="utf-8") as file:
@@ -71,3 +72,7 @@ print(new_category_list)
 #Збереження нового набору
 with open("top_categories.json", "w", encoding="utf-8") as file:
     json.dump(new_category_list, file, indent=4)
+
+#Візуалізація
+df = pd.DataFrame(new_category_list.items(), columns=["category", "net_profit"])
+print(df)
