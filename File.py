@@ -1,6 +1,7 @@
 import csv
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 
 list_of_dictionaries = []
 with open("global_sales.csv", "r", encoding="utf-8") as file:
@@ -76,3 +77,13 @@ with open("top_categories.json", "w", encoding="utf-8") as file:
 #Візуалізація
 df = pd.DataFrame(new_category_list.items(), columns=["category", "net_profit"])
 print(df)
+
+#Побудування базового bar chart
+x_values = new_category_list.keys()
+y_values = new_category_list.values()
+
+plt.subplot(1, 1, 1)   #рядки, стовпці, розташування
+plt.bar(x_values, y_values, color="#B39DDB", align="center")
+plt.title("Прибуток топ-категорій")
+plt.ticklabel_format(style='plain', axis='y')  # рибирає 1е6
+plt.show()
